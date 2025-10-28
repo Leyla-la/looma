@@ -1,12 +1,72 @@
+@import "tailwindcss/theme" layer(theme);
+@import "tailwindcss/preflight" layer(base);
+@import "tailwindcss/utilities" layer(utilities);
+
+/* Ghibli 8-bit Color Palette - Soft Pastel Dithering */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Primary Ghibli Colors - Enhanced for 8-bit aesthetic */
+  --ghibli-sky: #A8D5BA;
+  --ghibli-blue: #B0C4DE;
+  --ghibli-cream: #F5F5DC;
+  --ghibli-peach: #FFDAB9;
+  --ghibli-pink: #FFB6C1;
+  --ghibli-lavender: #E6E6FA;
+
+  /* Nature Colors */
+  --ghibli-grass: #90EE90;
+  --ghibli-forest: #6B8E23;
+  --ghibli-earth: #D2B48C;
+
+  /* Neutral Colors */
+  --ghibli-white: #FAFAFA;
+  --ghibli-gray: #E0E0E0;
+  --ghibli-dark: #4A4A4A;
+  --ghibli-charcoal: #2C3E50;
+
+  /* Functional Colors */
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --border: oklch(0.922 0 0);
+
+  /* Animation Colors */
+  --glow-firefly: rgba(255, 215, 0, 0.6);
+  --glow-sprite: rgba(200, 200, 255, 0.5);
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --card-bg: #2d3436;
+    --border: #4a5859;
   }
 }
 
@@ -14,11 +74,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  transition: background 0.3s ease;
 }
 
 * {
@@ -30,6 +91,126 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Ghibli-style animations - 8-bit Enhanced */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(10px, -10px) rotate(5deg); }
+  50% { transform: translate(0, -20px) rotate(0deg); }
+  75% { transform: translate(-10px, -10px) rotate(-5deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes hop {
+  0%, 100% { transform: translateY(0) scaleY(1); }
+  40% { transform: translateY(-30px) scaleY(1.1); }
+  60% { transform: translateY(-20px) scaleY(0.9); }
+}
+
+@keyframes slide-in {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-drift {
+  animation: drift 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-hop {
+  animation: hop 1.5s ease-in-out infinite;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.8s ease-out;
+}
+
+.animate-sparkle {
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* Ghibli-style card - Enhanced with backdrop blur */
+.ghibli-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 32px;
+  border: 3px solid var(--border);
+  box-shadow: 
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    0 20px 40px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ghibli-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.12),
+    0 24px 48px rgba(0, 0, 0, 0.08),
+    inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  border-color: var(--ghibli-sky);
+}
+
+/* Pixel art effect for 8-bit aesthetic */
+.pixel-art {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--ghibli-gray) 0%,
+    var(--ghibli-white) 50%,
+    var(--ghibli-gray) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
 }
 
 .imgDark {
@@ -46,5 +227,15 @@ a {
   }
   .imgDark {
     display: unset;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      #2d3436 0%,
+      #4a5859 50%,
+      #2d3436 100%
+    );
+    background-size: 200% 100%;
   }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "frontend",
   "version": "0.1.0",
   "type": "module",
   "private": true,
@@ -8,28 +8,38 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
-    "check-types": "next typegen && tsc --noEmit"
+    "check-types": "next typegen && tsc --noEmit",
+    "tailwind:init": "../../node_modules/.bin/tailwindcss init -p"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@hookform/resolvers": "^5.2.2",
+    "@repo/shared": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.90.5",
+    "axios": "^1.12.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.548.0",
+    "lucide-react": "^0.378.0",
     "next": "^16.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.65.0",
+    "shadcn-ui": "^0.9.5",
     "tailwind-merge": "^3.3.1",
-    "zustand": "^5.0.8",
-    "@repo/shared": "*"
+    "zod": "^4.1.12",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.16",
     "@types/node": "^22.15.3",
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.1",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.38.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.16",
     "typescript": "5.9.2"
   }
 }

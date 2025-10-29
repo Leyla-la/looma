@@ -51,49 +51,29 @@ export function GhibliBackground() {
         }}
       />
 
-      {/* Soot sprites - Small floating dots */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
+      {/* Soot sprites - Small floating gifs */}
+      {[...Array(8)].map((_, i) => (
+        <motion.img
           key={`sprite-${i}`}
-          className="absolute w-3 h-3 bg-(--ghibli-charcoal) rounded-full opacity-20"
-          style={{
-            left: `${10 + i * 8}%`,
-            top: `${20 + (i % 4) * 20}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 3 + i * 0.5,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.3,
-          }}
+          src="/ghibli-assets/soot-sprite.gif"
+          alt="Soot Sprite"
+          className="absolute w-6 h-6 opacity-20 pointer-events-none"
+          style={{ left: `${10 + i * 10}%`, top: `${20 + (i % 4) * 18}%` }}
+          animate={{ y: [0, -30, 0], opacity: [0.1, 0.3, 0.1] }}
+          transition={{ duration: 3 + i * 0.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
         />
       ))}
 
-      {/* Fireflies - Glowing pulsing dots */}
-      {[...Array(8)].map((_, i) => (
-        <motion.div
+      {/* Fireflies - Glowing pulsing gifs */}
+      {[...Array(6)].map((_, i) => (
+        <motion.img
           key={`firefly-${i}`}
-          className="absolute w-2 h-2 rounded-full"
-          style={{
-            left: `${15 + i * 12}%`,
-            top: `${30 + (i % 3) * 25}%`,
-            background: "var(--glow-firefly)",
-            boxShadow: "0 0 10px var(--glow-firefly), 0 0 20px var(--glow-firefly)",
-          }}
-          animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.4, 1, 0.4],
-          }}
-          transition={{
-            duration: 2 + i * 0.3,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: i * 0.4,
-          }}
+          src="/ghibli-assets/butterfly.gif"
+          alt="Firefly"
+          className="absolute w-4 h-4 opacity-40 pointer-events-none"
+          style={{ left: `${15 + i * 13}%`, top: `${30 + (i % 3) * 25}%` }}
+          animate={{ scale: [1, 1.5, 1], opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2 + i * 0.3, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
         />
       ))}
 

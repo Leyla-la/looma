@@ -14,8 +14,41 @@ const Newsletter = () => {
   const [email, setEmail] = useState("");
 
   return (
-    <section ref={ref} className="py-20">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section ref={ref} className="py-20 relative overflow-hidden">
+      {/* Animated background: floating blobs, firefly, soot sprite */}
+      <motion.div
+        className="absolute top-10 left-10 w-32 h-32 bg-ghibli-mint/20 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, -30, 0], x: [0, 20, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-10 right-20 w-36 h-28 bg-ghibli-sky/20 rounded-full blur-3xl pointer-events-none"
+        animate={{ y: [0, 30, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      {[...Array(4)].map((_, i) => (
+        <motion.img
+          key={`sprite-${i}`}
+          src="/ghibli-assets/soot-sprite.gif"
+          alt="Soot Sprite"
+          className="absolute w-8 h-8 opacity-30 pointer-events-none"
+          style={{ left: `${20 + i * 18}%`, top: `${60 + (i % 2) * 18}%` }}
+          animate={{ y: [0, -20, 0], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+        />
+      ))}
+      {[...Array(3)].map((_, i) => (
+        <motion.img
+          key={`firefly-${i}`}
+          src="/ghibli-assets/butterfly.gif"
+          alt="Firefly"
+          className="absolute w-4 h-4 opacity-40 pointer-events-none"
+          style={{ left: `${30 + i * 22}%`, top: `${40 + (i % 2) * 30}%` }}
+          animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 3 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.7 }}
+        />
+      ))}
+      <div className="container mx-auto px-4 max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

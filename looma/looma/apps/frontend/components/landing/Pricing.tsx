@@ -19,6 +19,7 @@ const plans = [
     ],
     cta: "Get Started",
     href: "/register",
+    asset: <img src="/ghibli-assets/soot-sprite.gif" alt="Soot Sprite" className="mx-auto mb-4 w-12 h-12" />,
   },
   {
     name: "Pro",
@@ -34,6 +35,7 @@ const plans = [
     cta: "Start Pro Trial",
     href: "/register?plan=pro",
     popular: true,
+    asset: <img src="/ghibli-assets/totoro-hop.gif" alt="Totoro" className="mx-auto mb-4 w-14 h-14" />,
   },
   {
     name: "Enterprise",
@@ -49,6 +51,7 @@ const plans = [
     ],
     cta: "Contact Sales",
     href: "/contact",
+    asset: <img src="/ghibli-assets/catbus-run.gif" alt="Catbus" className="mx-auto mb-4 w-14 h-14" />,
   },
 ];
 
@@ -73,14 +76,15 @@ const Pricing = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
           {plans.map((p, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 40 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.2, duration: 0.5 }}
-              className={`relative flex ${p.popular ? "lg:-my-6" : ""}`}
+              whileHover={{ scale: 1.05, y: -10 }}
+              className={`relative flex`}
             >
               {p.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 text-sm font-bold text-white rounded-full bg-linear-to-r from-ghibli-mint to-ghibli-sky shadow z-10">
@@ -88,8 +92,9 @@ const Pricing = () => {
                 </div>
               )}
               <Card
-                className={`p-8 w-full flex flex-col text-center bg-white/95 backdrop-blur-lg rounded-3xl shadow-xl transition-all duration-300 hover:shadow-2xl ${p.popular ? "border-4 border-ghibli-mint" : "border border-ghibli-gray/50"}`}
+                className={`p-8 w-full flex flex-col text-center bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl transition-all duration-300 hover:shadow-3xl ${p.popular ? "border-4 border-ghibli-mint" : "border-2 border-ghibli-gray/40"}`}
               >
+                {p.asset}
                 <h3 className="text-2xl font-bold mb-3 font-playfair text-ghibli-charcoal">
                   {p.name}
                 </h3>

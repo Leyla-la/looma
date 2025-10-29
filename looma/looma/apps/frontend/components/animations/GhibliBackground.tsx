@@ -7,7 +7,7 @@ export function GhibliBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[var(--ghibli-sky)] via-[var(--ghibli-cream)] to-[var(--ghibli-blue)] opacity-30" />
+  <div className="absolute inset-0 bg-linear-to-br from-(--ghibli-sky) via-(--ghibli-cream) to-(--ghibli-blue) opacity-30" />
 
       {/* Animated clouds - Drifting slowly */}
       <motion.div
@@ -55,7 +55,7 @@ export function GhibliBackground() {
       {[...Array(12)].map((_, i) => (
         <motion.div
           key={`sprite-${i}`}
-          className="absolute w-3 h-3 bg-[var(--ghibli-charcoal)] rounded-full opacity-20"
+          className="absolute w-3 h-3 bg-(--ghibli-charcoal) rounded-full opacity-20"
           style={{
             left: `${10 + i * 8}%`,
             top: `${20 + (i % 4) * 20}%`,

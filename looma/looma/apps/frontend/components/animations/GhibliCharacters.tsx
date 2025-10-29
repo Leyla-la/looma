@@ -1,10 +1,13 @@
-// Animated Totoro hopping - Using GIF from online source
+// Animated Totoro hopping - With intelligent fallback
 "use client";
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
 
 export function TotoroHop({ className = "w-16 h-16" }: { className?: string }) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div
       className={className}
@@ -17,15 +20,22 @@ export function TotoroHop({ className = "w-16 h-16" }: { className?: string }) {
         ease: "easeInOut",
       }}
     >
-      {/* Using animated Totoro GIF from online source */}
-      <Image
-        src="https://i.pinimg.com/originals/6c/3a/e9/6c3ae9f5b8b7c5a8c5e5b5e5b5e5b5e5.gif"
-        alt="Totoro hopping"
-        width={64}
-        height={64}
-        className="pixel-art"
-        unoptimized
-      />
+      {!imageError ? (
+        <Image
+          src="/ghibli-assets/totoro-hop.gif"
+          alt="Totoro hopping"
+          width={64}
+          height={64}
+          className="pixel-art"
+          unoptimized
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        /* Fallback: CSS-generated Totoro */
+        <div className="w-full h-full flex items-center justify-center text-4xl">
+          🌿
+        </div>
+      )}
     </motion.div>
   );
 }
@@ -83,11 +93,13 @@ export function Firefly({ className = "w-2 h-2", delay = 0 }: { className?: stri
   );
 }
 
-// Catbus running across screen
+// Catbus running across screen - With intelligent fallback
 export function CatbusRun() {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <motion.div
-      className="absolute bottom-0 w-32 h-20"
+      className="absolute bottom-0 w-32 h-20 pointer-events-none"
       animate={{
         x: ["-100%", "100vw"],
       }}
@@ -98,15 +110,22 @@ export function CatbusRun() {
         repeatDelay: 5,
       }}
     >
-      {/* Using Catbus GIF from online */}
-      <Image
-        src="https://media.giphy.com/media/TgL3wFZ0u7t8k/giphy.gif"
-        alt="Catbus running"
-        width={128}
-        height={80}
-        className="pixel-art object-contain"
-        unoptimized
-      />
+      {!imageError ? (
+        <Image
+          src="/ghibli-assets/catbus-run.gif"
+          alt="Catbus running"
+          width={128}
+          height={80}
+          className="pixel-art object-contain"
+          unoptimized
+          onError={() => setImageError(true)}
+        />
+      ) : (
+        /* Fallback: Emoji Catbus */
+        <div className="w-full h-full flex items-center justify-center text-6xl">
+          🐱
+        </div>
+      )}
     </motion.div>
   );
 }
